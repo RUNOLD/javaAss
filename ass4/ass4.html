@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>EVEN AND ODD CHECKER</h1>
+    <!-- even,odd -->
+    <label for="number">enter a number</label>
+    <input type="number" id="number" placeholder="enter a number">
+
+    <!-- button -->
+    <button onclick="evenOdd ()">check</button>
+    <p id="result"></p>
+    <script>
+        function evenOdd() {
+            var num = document.getElementById("number").value;
+            if (num % 2 == 0) {
+                document.getElementById("result").innerText = num + " is even";
+            } else {
+                document.getElementById("result").innerText = num + " is odd";
+            }
+        }
+    </script>
+</body>
+</html>

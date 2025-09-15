@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>GRADE</h2>
+    <label for="scores">enter score</label>
+    <input type="text" id="scores" placeholder="enter score">
+
+    <!-- button -->
+    <button onclick="checkScore ()">check</button>
+
+    <h3 id="result"></h3>
+    <script>
+    function checkScore() {
+        var score = document.getElementById("scores").value;
+        var result = "";
+
+        if(score >= 80 && score <= 100){
+            result = "A";
+        }
+        else if(score >= 70 && score < 79){
+            result = "B";
+        }
+        else if(score >= 60 && score < 69){
+            result = "C";
+        }
+        else if(score >= 50 && score < 59){
+            result = "D";
+        }
+        else if(score >= 0 && score < 49){
+            result = "F";
+        }
+
+        document.getElementById("result").innerText = "Grade: " + result;
+    }
+</body>
+</html>

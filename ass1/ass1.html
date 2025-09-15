@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Checker</title>
+</head>
+<body>
+  <h2>Age Checker</h2>
+
+  <!-- age input -->
+  <label for="age">Enter your age: </label>
+  <input type="number" id="age" placeholder="Enter age">
+
+  <!-- Button -->
+  <button onclick="checkAge()">Check</button>
+
+  <!-- Result -->
+  <p id="result"></p>
+
+  <script>
+    function checkAge() {
+      let age = document.getElementById("age").value;
+      age = Number(age);
+
+
+      // ternary operator used here
+      let message = (age >= 18) 
+        ? "You are old enough to drive." 
+        : 'You are too young to drive.';
+
+      document.getElementById("result").textContent = message;
+    }
+  </script>
+</body>
+</html>
