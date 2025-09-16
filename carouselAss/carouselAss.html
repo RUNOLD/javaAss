@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .carousel_track{
+            display: flex;
+            width: 250px;
+            overflow-x: hidden;
+            /* background-color: blue; */
+        }
+        .carousel_track img{
+            width: 250px;
+            height: 400px;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: grey;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 1100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carousel Ass</h1>
+    <div class="carousel">
+        <div class="carousel_track">
+            <div class="slide1"><img src="slide1.jpeg" alt=""></div>
+            <div class="slide2"><img src="slide2.jpeg" alt=""></div>
+            <div class="slide3"><img src="slide3.jpeg" alt=""></div>
+            <div class="slide4"><img src="slide4.jpeg" alt=""></div>
+            <div class="slide5"><img src="slide5.jpeg" alt=""></div>
+        </div>
+        <!-- Navigation buttons -->
+        <button class="prev">⟨</button>
+        <button class="next">⟩</button>
+    </div>
+    <script>
+        const track = document.querySelector('.carousel_track');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        const slideWidth = 250; // matches your CSS width
+
+        prevBtn.addEventListener('click', () => {
+            track.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            track.scrollBy({ left: slideWidth, behavior: 'smooth' });
+      });
+    </script>
+</body>
+</html>
