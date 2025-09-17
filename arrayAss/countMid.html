@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const countries = [
+            'Afghanistan',
+            'Albania',
+            'Algeria',
+            'Andorra',
+            'Angola',
+            'Antigua and Barbuda',
+            'Argentina',
+            'Armenia',
+            'Australia',
+            'Austria',
+            'Azerbaijan',
+            'Bahamas',
+            'Bahrain',
+            'Bangladesh',
+            'Barbados',
+            'Belarus',
+            'Belgium',
+            'Belize',
+            'Benin',
+            'Bhutan',
+            'Bolivia',
+            'Bosnia and Herzegovina',
+            'Botswana',
+            'Brazil',
+            'Brunei',
+            'Bulgaria',
+            'Burkina Faso',
+            'Burundi',
+            'Cambodia',
+            'Cameroon',
+            'Canada',
+            'Cape Verde',
+            'Central African Republic',
+            'Chad',
+            'Chile',
+            'China',
+            'Colombi',
+            'Comoros',
+            'Congo (Brazzaville)',
+            'Congo',
+            'Costa Rica',
+            "Cote d'Ivoire",
+            'Croatia',
+            'Cuba',
+            'Cyprus',
+            'Czech Republic',
+            'Denmark',
+            'Djibouti',
+            'Dominica',
+            'Dominican Republic',
+        ];
+        
+        let middle;
+        if (countries.length % 2 === 0) {
+            // Even number of countries: two middle countries
+            const mid1 = countries[(countries.length / 2) - 1];
+            const mid2 = countries[countries.length / 2];
+            middle = [mid1, mid2];
+            console.log("Middle countries:", middle);
+        } else {
+            // Odd number of countries: one middle country
+            middle = countries[Math.floor(countries.length / 2)];
+            console.log("Middle country:", middle);
+        }
+
+        //slice
+        let firstHalf = countries.slice(0, (countries.length / 2));
+        let secondHalf = countries.slice((countries.length / 2), (countries.length));
+        console.log("First half of countries:", firstHalf);
+        console.log("Second half of countries:", secondHalf);
+        
+
+    </script>
+</body>
+</html>
