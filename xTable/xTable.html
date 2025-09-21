@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .base {
+            display: block;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        input {
+            padding: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="base">
+        <input type="number" id="start" placeholder="multiplication value">
+        <input type="number" id="end" placeholder="multiplication value">
+        <button onclick="showTable ()">Start from</button>
+
+        
+    </div>
+    <div id="result"></div>
+    <script>
+        function showTable () {
+            let startValue = document.getElementById('start').value;
+            console.log(`Starting multiplication table from: ${startValue}`);
+        }
+
+        for(let index = 0; index <= 10; index ++) {
+            console.log(`1 * ${index} = ${1 * index}`);
+        }
+        
+        for(let index = 0; index <= 10; index ++) {
+            console.log(`2 * ${index} = ${2 * index}`);
+        }
+
+        for(let index = 0; index <= 10; index ++){
+            console.log(`3 * ${index} = ${3 * index}`);
+        }
+
+        for(let index = 0; index <= 20; index ++){
+            console.log(`4 * ${index} = ${4 * index}`);
+        }
+
+        for(let index = 0; index <= 20; index ++){
+            console.log(`5 * ${index} = ${5 * index}`);
+        }
+
+        for(let index = 0; index <= 20; index ++){
+            console.log(`6 * ${index} = ${6 * index}`);
+        }
+
+        for(let index = 0; index <= 20; index ++){
+            console.log(`7 * ${index} = ${7 * index}`);
+        }
+
+        for(let index = 0; index <= 20; index ++){
+            console.log(`8 * ${index} = ${8 * index}`);
+        }
+
+        for(let index = 0; index <= 20; index ++){
+            console.log(`9 * ${index} = ${9 * index}`);
+        }
+
+        for(let index = 0; index <= 20; index ++){
+            console.log(`10 * ${index} = ${10 * index}`);
+        }
+        
+    </script>
+    
+</body>
+</html>
