@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main{
+            background-color: white;
+            border-radius: 20px;
+            height: fit-content;
+            width: 50%;
+            margin: 5%;
+            margin-top: 10vh;
+            border: 3px solid;
+        }
+        .container{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: fit-content;
+            width: 50%;
+            margin: auto;
+            margin-top: 10vh;
+            border-radius: 20px;
+            background-color: none;
+            gap: 10px;
+        }
+        .mtn button{
+            height: 100px;
+            width: 100px;
+            border: 3px solid;
+            background-color: yellow;
+            cursor: pointer;
+        }
+        .glo button{
+            height: 90px;
+            width: 90px;
+            border: 3px solid;
+            background-color: green;
+            cursor: pointer;
+        }
+        .air button{
+            height: 100px;
+            width: 100px;
+            border: 3px solid;
+            background-color: rgba(255, 0, 0, 0.723);
+            cursor: pointer;
+        }
+        .eti button{
+            height: 90px;
+            width: 90px;
+            border: 3px solid;
+            background-color: rgba(0, 128, 0, 0.408);
+            cursor: pointer;
+        }
+        .price{
+            width: 40%;
+            /* background-color: blue; */
+            padding-top: 50px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        .price button{
+            border: none;
+            width: 60px;
+            height: 25px;
+        }
+        .price button:hover{
+            background-color: gray;
+            border: 3px solid;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        #templateInput {
+            width: 100%;
+            margin-top: 20px;
+            padding: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        #loadTemplateBtn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .active-network {
+            border-color: black !important;
+            border-width: 5px !important;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="mtn"><button id="btnMTN" onclick="selectNetwork('MTN')">MTN</button></div>
+            <div class="glo"><button id="btnGLO" onclick="selectNetwork('GLO')">GLO</button></div>
+            <div class="air"><button id="btnAIRTEL" onclick="selectNetwork('AIRTEL')">AIRTEL</button></div>
+            <div class="eti"><button id="btn9MOBILE" onclick="selectNetwork('9MOBILE')">9MOBILE</button></div>
+        </div>
+        <div class="price">
+            <button onclick="selectAmount(100)">#100</button>
+            <button onclick="selectAmount(200)">#200</button>
+            <button onclick="selectAmount(500)">#500</button>
+            <button onclick="selectAmount(1000)">#1000</button>
+            <button onclick="selectAmount(1500)">#1500</button>
+            <button onclick="selectAmount(2000)">#2000</button>
+            <button onclick="selectAmount(5000)">#5000</button>
+            <button onclick="selectAmount(10000)">#10000</button>
+        </div>
+        <br>
+        <br>
+        <label for="amount">Enter Amount</label>
+        <input type="number" id="Price" placeholder="amount" required min="100">
+        <button onclick="genNum()">generate code</button>
+
+        <div>
+            <h1 id="codeGen">code generated</h1>
+        </div>
+
+        <!-- Input for loading card template -->
+        <label for="templateInput">Load Card Template (e.g. *311*pin#):</label>
+        <input type="text" id="templateInput" placeholder="*311*pin#" />
+        <button id="loadTemplateBtn" onclick="loadCard()">Load Card</button>
+
+        <!-- History Table -->
+        <table id="historyTable">
+            <thead>
+                <tr>
+                    <th>Network</th>
+                    <th>Code</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- History rows will be added here -->
+            </tbody>
+        </table>
+    </main>
+
+    <script>
+        let selectedNetwork = null;
+        let selectedAmount = null;
+        let history = [];
+
+        function selectNetwork(network) {
+            selectedNetwork = network;
+            // Remove active class from all buttons
+            document.getElementById('btnMTN').classList.remove('active-network');
+            document.getElementById('btnGLO').classList.remove('active-network');
+            document.getElementById('btnAIRTEL').classList.remove('active-network');
+            document.getElementById('btn9MOBILE').classList.remove('active-network');
+
+            // Add active class to selected button
+            switch(network) {
+                case 'MTN':
+                    document.getElementById('btnMTN').classList.add('active-network');
+                    break;
+                case 'GLO':
+                    document.getElementById('btnGLO').classList.add('active-network');
+                    break;
+                case 'AIRTEL':
+                    document.getElementById('btnAIRTEL').classList.add('active-network');
+                    break;
+                case '9MOBILE':
+                    document.getElementById('btn9MOBILE').classList.add('active-network');
+                    break;
+            }
+        }
+
+        function selectAmount(amount) {
+            selectedAmount = amount;
+            document.getElementById('Price').value = amount;
+        }
+
+        function genNum() {
+            if (!selectedNetwork) {
+                alert('Please select a network first.');
+                return;
+            }
+
+            let amountInput = document.getElementById('Price').value;
+            if (!amountInput || amountInput < 100) {
+                alert('Please enter a valid amount (minimum 100).');
+                return;
+            }
+            selectedAmount = Number(amountInput);
+
+            let prefix;
+            switch (selectedNetwork) {
+                case 'MTN':
+                    prefix = '1';
+                    break;
+                case 'GLO':
+                    prefix = '2';
+                    break;
+                case 'AIRTEL':
+                    prefix = '3';
+                    break;
+                case '9MOBILE':
+                    prefix = '4';
+                    break;
+                default:
+                    prefix = '0';
+            }
+
+            let code = prefix;
+            for (let i = 0; i < 9; i++) {
+                code += Math.floor(Math.random() * 10);
+            }
+
+            document.getElementById('codeGen').innerHTML = code;
+
+            // Save to history as unused
+            history.push({
+                network: selectedNetwork,
+                code: code,
+                amount: selectedAmount,
+                status: 'Unused'
+            });
+
+            updateHistoryTable();
+        }
+
+        function updateHistoryTable() {
+            const tbody = document.getElementById('historyTable').querySelector('tbody');
+            tbody.innerHTML = '';
+            history.forEach((entry, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${entry.network}</td>
+                    <td>${entry.code}</td>
+                    <td>${entry.amount}</td>
+                    <td>${entry.status}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function loadCard() {
+            const templateInput = document.getElementById('templateInput').value;
+            if (!templateInput) {
+                alert('Please enter a card template.');
+                return;
+            }
+
+            // Find the pin placeholder "pin" in the template and replace it with actual code
+            // We assume the user will replace "pin" with the actual code in the input field
+            // So we need to detect the code in the template and mark it as used in history
+
+            // Extract the code from the template by finding the code in history that matches
+            // We will look for any code in history that is unused and check if template contains that code
+
+            let foundCodeIndex = -1;
+            for (let i = 0; i < history.length; i++) {
+                if (history[i].status === 'Unused' && templateInput.includes(history[i].code)) {
+                    foundCodeIndex = i;
+                    break;
+                }
+            }
+
+            if (foundCodeIndex === -1) {
+                alert('No matching unused code found in history for the given template.');
+                return;
+            }
+
+            // Mark the code as used
+            history[foundCodeIndex].status = 'Used';
+            updateHistoryTable();
+
+            alert(`Card loaded with code: ${history[foundCodeIndex].code}`);
+        }
+    </script>
+</body>
+</html>
