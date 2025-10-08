@@ -56,19 +56,19 @@
             const editButton = document.createElement('Edit');
             editButton.textContent = 'Edit';
             editButton.className = 'edit-btn';
-            editButton.onclick = function() {
-                const newTaskText = prompt('Edit your task:', taskText);
-                if (newTaskText !== null && newTaskText.trim() !== '') {
-                    listItem.firstChild.textContent = newTaskText.trim();
-                }
-            };
+            // editButton.onclick = function() {
+            //     const newTaskText = prompt('Edit your task:', taskText);
+            //     if (newTaskText !== null && newTaskText.trim() !== '') {
+            //         listItem.firstChild.textContent = newTaskText.trim();
+            //     }
+            // };
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
             editButton.className = 'del-btn';
-            deleteButton.onclick = function() {
-                taskList.removeChild(listItem);
-            };
+            // deleteButton.onclick = function() {
+            //     taskList.removeChild(listItem);
+            // };
 
 
             listItem.appendChild(editButton);

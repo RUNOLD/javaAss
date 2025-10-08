@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" oninput="searchInput()" id="search"  placeholder="enter search">
+    <div id="show">
+        <button><h1>rice</h1></button>
+        <button><h1>beans</h1></button>
+        <button><h1>groundnut</h1></button>
+        <button><h1>eba</h1></button>
+        <button><h1>bread</h1></button>
+    </div>
+    <script>
+        let display = ['rice', 'beans', 'groundnut', 'eba', 'bread']
+        let search = document.getElementById('search').value
+        let show = document.getElementById('show');
+
+        function searchInput(){
+            let filterFood = display.filter((food) => {
+                return food.includes(search.value)
+            }) 
+            show.innerHTML = `${filterFood}`
+        }
+        
+    </script>
+</body>
+</html>
